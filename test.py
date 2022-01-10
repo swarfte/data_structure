@@ -4,8 +4,8 @@ from StaticLinkList import StaticLinkList
 
 
 def StaticLinkList_test():
-    SL = StaticLinkList()
-
+    # SL = StaticLinkList()
+    pass
 
 def SqList_test():
     S = SqList(int)
@@ -24,15 +24,23 @@ def SqList_test():
 
 def LinkList_test():
     L = LinkList()
-    L.add_tail(12)
-    L.add_tail(23)
-    L.add_tail(34)
+    L.add_tail(12) # 0
+    L.add_tail(24) # 1
+    L.add_head(789) # 2
+    L.list_insert(100,123)
+    L.add_tail(45)
+    L.add_tail(77)
+    # print(L.pop_tail())
     print(L.get_elem(1))
+    print(L.list_last().element)
     print(L.get_list())
+    L.clear_list()
+    print(L.get_list())
+    # print(L.get_node_list())
     print(L.list_length())
 
 
 if __name__ == '__main__':
-    SqList_test()
-    # LinkList_test()
+    #SqList_test()
+    LinkList_test()
     # StaticLinkList_test()
