@@ -7,10 +7,12 @@ def StaticLinkList_test():
     # SL = StaticLinkList()
     pass
 
+
 def SqList_test():
-    S = SqList(int)
-    for x in range(10):
-        S.list_insert(x, x * 10)
+    # S = SqList(int)
+    # for x in range(10):
+    #     S.list_insert(x, x * 10)
+    S = SqList(int, [x for x in range(5)])
     S.list_insert(5, 123)
     print(S.get_list())
     print(S.list_length())
@@ -23,24 +25,20 @@ def SqList_test():
 
 
 def LinkList_test():
-    L = LinkList()
-    L.add_tail(12) # 0
-    L.add_tail(24) # 1
-    L.add_head(789) # 2
-    L.list_insert(100,123)
-    L.add_tail(45)
-    L.add_tail(77)
-    # print(L.pop_tail())
-    print(L.get_elem(1))
-    print(L.list_last().element)
+    L = LinkList([1, 2, 3, 4, 5])
+    # L = LinkList()
+    L.pop_tail()
+    L.add_tail(12)
+    L.pop_head()
+    L.add_head(123)
+    L.list_insert(1,234)
+    print(L.list_delete(2).element)
+    print(L.locate_elem(234))
     print(L.get_list())
-    L.clear_list()
-    print(L.get_list())
-    # print(L.get_node_list())
     print(L.list_length())
 
 
 if __name__ == '__main__':
-    #SqList_test()
+    # SqList_test()
     LinkList_test()
     # StaticLinkList_test()

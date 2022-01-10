@@ -1,9 +1,15 @@
 class SqList(object):
-    def __init__(self, DataType):  # 初始化操作,建立一個空的線性表
+    def __init__(self, DataType, L=None):  # 初始化操作,建立一個空的線性表
         super(SqList, self).__init__()
         self.__data_type = DataType  # 每個類型均為DataType(即單一類型)
         self.__list = []
         self.__list_len = 0
+        self.init(L)
+
+    def init(self, L):
+        if L is not None:
+            for x in L:
+                self.add_tail(x)
 
     def list_empty(self):  # 若線性表為空,返回True,否則返回False
         if len(self.__list) == 0:
