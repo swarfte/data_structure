@@ -5,6 +5,7 @@ class Node(object):  # 創建一個節點
         self.next = None  # 指針域
 
 
+
 class LinkList(object):  # 創建一個單鏈表
     def __init__(self, L=None):
         super(LinkList, self).__init__()

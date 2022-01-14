@@ -4,8 +4,19 @@ from StaticLinkList import StaticLinkList
 
 
 def StaticLinkList_test():
-    # SL = StaticLinkList()
-    pass
+    a = ["ab0", "cc", "ee"]
+    s = StaticLinkList(a)
+    s.add_tail("rra")
+    s.add_head("qwe")
+    s.add_head("ppp")
+    s.list_insert(2, "test")
+    s.print_list()
+    print(s.get_elem(2))
+    print(s.locate_elem("test"))
+    print(s.pop_tail())
+    s.pop_head()
+    s.list_delete(1)
+    s.print_list()
 
 
 def SqList_test():
@@ -40,5 +51,5 @@ def LinkList_test():
 
 if __name__ == '__main__':
     # SqList_test()
-    LinkList_test()
-    # StaticLinkList_test()
+    #LinkList_test()
+    StaticLinkList_test()

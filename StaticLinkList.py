@@ -1,5 +1,92 @@
-class StaticLinkList(object):
-    def __init__(self, cur, value):
+class Node(object):  # 節點
+    def __init__(self, data=None, n=None):
+        super(Node, self).__init__()
+        self.data = data
+        self.next = n
+
+
+class StaticLinkList(object):  # 靜態鏈表
+    def __init__(self, l):
         super(StaticLinkList, self).__init__()
-        self.cur = cur
-        self.value = value
+        self.node = [None] * len(l)
+        self.create_LinkList(l)
+
+    def create_LinkList(self, l):  # 創建靜態鏈表
+        for x in range(len(l)):
+            self.node[x] = Node(l[x])
+            if x > 0:
+                self.node[x - 1].next = self.node[x]
+
+    def print_list(self):  # 遍歷3並輸出靜態鏈表
+        p = self.node[0]
+        while p:
+            print(p.data, end="->")
+            p = p.next
+        print("None")
+
+    def get_list(self):  # 以列表型式返回靜態鏈表
+        return self.node
+
+    def add_tail(self, e):  # 在隊尾插入元素
+        new = Node(e)
+        self.node[-1].next = new
+        self.node.append(new)
+
+    def add_head(self, e):  # 在隊頭插入元素
+        new = Node(e, self.node[0])
+        self.node.insert(0, new)
+
+    def list_insert(self, index, e):  # 在指定的位置插入元素
+        if index == 0:
+            self.add_head(e)
+        elif index == len(self.node) - 1:
+            self.add_tail(e)
+        else:
+            new = Node(e, self.node[index])
+            self.node[index - 1].next = new
+            self.node.insert(index, new)
+
+    def list_length(self):  # 獲取靜態鏈表長度
+        return len(self.node)
+
+    def clean_list(self):  # 清空靜態鏈表
+        self.node = []
+
+    def list_empty(self):  # 檢測靜態鏈表是否包含元素
+        return True if len(self.node) == 0 else False
+
+    def get_elem(self, index):  # 獲取指定索引值的元素
+        p = self.node[0]
+        for x in range(index):
+            p = p.next
+        return p.data
+
+    def locate_elem(self, e):  # 判斷靜態鏈表是否包含指定元素
+        p = self.node[0]
+        while p.next is not None:
+            if p.data == e:
+                return True
+            p = p.next
+        return False
+
+    def pop_tail(self):  # 刪除靜態鏈表中最後的元素
+        d = self.node[-1].data
+        self.node[-2].next = None
+        self.node = self.node[:-1]
+        return d
+
+    def pop_head(self):  # 刪除靜態鏈表中開頭的元素
+        d = self.node[0].data
+        del self.node[0]
+        return d
+
+    def list_delete(self, index):  # 刪除指定位置的元素
+        if index == 0:
+            self.pop_head()
+        elif index == len(self.node) - 1:
+            self.pop_tail()
+        else:
+            d = self.node[index].data
+            self.node[index - 1].next = self.node[index].next
+            del self.node[index]
+            return d
