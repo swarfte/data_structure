@@ -1,15 +1,16 @@
 class Node(object):  # 創建一個節點
-    def __init__(self, e=None):  # 預設生成空節點
+    def __init__(self, e=None, n=None):  # 預設生成空節點
         super(Node, self).__init__()
         self.element = e  # 數據域
-        self.next = None  # 指針域
+        self.next = n  # 指針域
 
 
-class LinkList(object):  # 創建一個單鏈表 #TODO 應加入頭指針 方便操作
+class CircularLinkList(object):  # 創建一個單鏈表 #TODO 應加入頭指針 方便操作
     def __init__(self, L=None):
-        super(LinkList, self).__init__()
-        self.__head = None  # 防止外部改變頭節點 (沒有設定頭指針)
+        super(CircularLinkList, self).__init__()
+        self.__head = Node()  # 防止外部改變頭節點 (沒有設定頭指針)
         self.__len = 0  # 防止外部改變鏈表長度
+        self.__end = Node()
         self.init(L)
 
     def init(self, L):  # 初始化把列表轉為換鏈表
@@ -118,13 +119,13 @@ class LinkList(object):  # 創建一個單鏈表 #TODO 應加入頭指針 方便
 
     def get_list(self):  # 以list的列式返回鏈表中全部元素
         data = []
-        for x in range(self.list_length()):
+        for x in range(1,self.list_length()+1):
             data.append(self.get_elem(x))  # 獲取當前節點的元素
         return data
 
     def get_node_list(self):  # 以list的列式返回鏈表中全部節點
         data = []
-        for x in range(self.list_length()):
+        for x in range(1,self.list_length()+1):
             temp = self.get_node(x)
             if temp is not None:
                 data.append(temp)  # 獲取當前節點的元素

@@ -1,8 +1,10 @@
 # python數據結構
 ## 線性表(list)
-* SqList.py
-* LinkList.py
-* StaticLinkList.py
+* SqList.py 列表
+* LinkList.py 單鏈表
+* StaticLinkList.py 靜態鏈表
+* CircularLinkList.py 循環鏈表
+* DoubleLinkList.py 雙向鏈表
 * ### 基本功能
 * __init__():初始化
 * list_empty(): 判斷線性表是否為空

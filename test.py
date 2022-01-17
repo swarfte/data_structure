@@ -1,7 +1,12 @@
 from SqList import SqList
 from LinkList import LinkList
 from StaticLinkList import StaticLinkList
+from CircularLinkList import CircularLinkList
 
+def CircularLinkList_test():
+    c = CircularLinkList([12,34,56])
+    c.add_tail(456)
+    print(c.get_list())
 
 def StaticLinkList_test():
     a = ["ab0", "cc", "ee"]
@@ -42,7 +47,7 @@ def LinkList_test():
     L.add_tail(12)
     L.pop_head()
     L.add_head(123)
-    L.list_insert(1,234)
+    L.list_insert(0,234)
     print(L.list_delete(2).element)
     print(L.locate_elem(234))
     print(L.get_list())
@@ -52,4 +57,5 @@ def LinkList_test():
 if __name__ == '__main__':
     # SqList_test()
     #LinkList_test()
-    StaticLinkList_test()
+    #StaticLinkList_test()
+    CircularLinkList_test()
