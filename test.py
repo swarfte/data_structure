@@ -2,11 +2,29 @@ from SqList import SqList
 from LinkList import LinkList
 from StaticLinkList import StaticLinkList
 from CircularLinkList import CircularLinkList
+from DoublyLinkedList import DoublyLinkedList
 
-def CircularLinkList_test():
-    c = CircularLinkList([12,34,56])
-    c.add_tail(456)
-    print(c.get_list())
+
+def DoublyLinkedList_test():
+    d = DoublyLinkedList([x for x in range(1, 6, 2)])
+    print(d.get_list())
+    print(d.get_elem(2))
+    print(d.locate_elem(5))
+    d.pop_head()
+    d.pop_tail()
+    d.add_tail(12)
+    d.add_head(19)
+    d.list_insert(0,159)
+    d.list_insert(d.list_length(),888)
+    d.list_insert(d.list_length() // 2,555)
+    d.list_delete(1)
+    print(d.get_list())
+    print(d.get_node(2).prior.prior.prior.prior.prior.element)
+
+# def CircularLinkList_test():
+#     c = CircularLinkList([12,34,56])
+#     c.add_tail(456)
+#     print(c.get_list())
 
 def StaticLinkList_test():
     a = ["ab0", "cc", "ee"]
@@ -47,7 +65,7 @@ def LinkList_test():
     L.add_tail(12)
     L.pop_head()
     L.add_head(123)
-    L.list_insert(0,234)
+    L.list_insert(0, 234)
     print(L.list_delete(2).element)
     print(L.locate_elem(234))
     print(L.get_list())
@@ -56,6 +74,7 @@ def LinkList_test():
 
 if __name__ == '__main__':
     # SqList_test()
-    #LinkList_test()
-    #StaticLinkList_test()
-    CircularLinkList_test()
+    # LinkList_test()
+    # StaticLinkList_test()
+    # CircularLinkList_test()
+    DoublyLinkedList_test()
