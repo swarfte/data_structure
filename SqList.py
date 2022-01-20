@@ -12,10 +12,7 @@ class SqList(object):
                 self.add_tail(x)
 
     def list_empty(self):  # 若線性表為空,返回True,否則返回False
-        if len(self.__list) == 0:
-            return True
-        else:
-            return False
+        return bool(self.__list_len)
 
     def clear_list(self):  # ClearList 將線性表清空
         self.__list = []

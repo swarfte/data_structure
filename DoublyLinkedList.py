@@ -21,11 +21,7 @@ class DoublyLinkedList(object):
                 self.add_tail(x)
 
     def list_empty(self):
-        if self.__head.next == self.__end \
-                and self.__end.prior == self.__head:
-            return False
-        else:
-            return True
+        return bool(self.__len)
 
     def list_length(self):
         return self.__len
@@ -83,13 +79,17 @@ class DoublyLinkedList(object):
 
     def pop_head(self):
         self.__len -= 1
+        n = self.__head.next
         self.__head.next.next.prior = self.__head
         self.__head.next = self.__head.next.next
+        return n.element
 
     def pop_tail(self):
         self.__len -= 1
+        n = self.__end.prior
         self.__end.prior.prior.next = self.__end
         self.__end.prior = self.__end.prior.prior
+        return n.element
 
     def list_insert(self, index, e):
         self.__len += 1
@@ -108,8 +108,10 @@ class DoublyLinkedList(object):
         p = self.__head.next
         for x in range(index):
             p = p.next
+        n = p
         p.next.prior = p.prior
         p.prior.next = p.next
+        return n.element
 
     def get_list(self):
         l = []

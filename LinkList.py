@@ -36,10 +36,7 @@ class LinkList(object):  # 創建一個單鏈表 #TODO 應加入頭指針 方便
             return node
 
     def list_empty(self):  # 判斷鏈表是否為空
-        if self.__head is not None:
-            return True
-        else:
-            return False
+        return bool(self.__len)
 
     def clear_list(self):  # 把鏈表清空
         self.__head = None
