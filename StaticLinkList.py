@@ -5,7 +5,7 @@ class Node(object):  # 節點
         self.next = n
 
 
-class StaticLinkList(object):  # 靜態鏈表
+class StaticLinkList(object):  # 靜態鏈表 #TODO 和預期的原理有所出入
     def __init__(self, l):
         super(StaticLinkList, self).__init__()
         self.node = [None] * len(l)

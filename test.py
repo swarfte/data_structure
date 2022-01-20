@@ -70,17 +70,12 @@ def SqList_test():
 
 
 def LinkList_test():
-    L = LinkList([1, 2, 3, 4, 5])
-    # L = LinkList()
-    L.pop_tail()
-    L.add_tail(12)
-    L.pop_head()
-    L.add_head(123)
-    L.list_insert(0, 234)
-    print(L.list_delete(2).element)
-    print(L.locate_elem(234))
-    print(L.get_list())
-    print(L.list_length())
+    l = LinkList([x for x in range(5)])
+    l.add_head(5)
+    l.list_insert(2,123)
+    l.add_head(87)
+    l.pop_tail()
+    print(l.get_list())
 
 
 # def my_gen(n):
@@ -92,7 +87,7 @@ def LinkList_test():
 
 if __name__ == '__main__':
     # SqList_test()
-    # LinkList_test()
+    LinkList_test()
     # StaticLinkList_test()
-    CircularLinkList_test()
+    #CircularLinkList_test()
     # DoublyLinkedList_test()
