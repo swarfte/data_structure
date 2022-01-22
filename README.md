@@ -19,3 +19,7 @@
   * list_delete(index):刪除並返回線性表中第i個位置元素
   * list_length():返回線性表的元素個數
   * get_list():返回整個線性表
+
+## 棧(stack)
+* SequentialStack.py 順序棧
+* ChainStack.py 鏈棧
