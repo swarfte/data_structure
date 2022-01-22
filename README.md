@@ -6,7 +6,7 @@
 * CircularLinkList.py 循環鏈表
 * DoubleLinkList.py 雙向循環鏈表
 * ### 基本功能
-  * __init__():初始化
+  * __init__():初始化,建立一個空的線性表
   * list_empty(): 判斷線性表是否為空
   * clear_list(): 清空線性表
   * get_elem(index): 獲取指定index的元素
@@ -23,3 +23,11 @@
 ## 棧(stack)
 * SequentialStack.py 順序棧
 * ChainStack.py 鏈棧
+* ### 基本功能
+  * __init__():初始化, 建立一個空棧
+  * clear_stack():將棧清空
+  * stack_empty():若棧為空,返回true,否則返回false
+  * get_top():若棧為非空,返回棧頂的元素
+  * push(e):插入元素e到棧中并成為棧頂元素
+  * pop(e):刪除並設回棧頂元素
+  * stack_lengths():返回棧的長度

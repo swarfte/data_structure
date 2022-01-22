@@ -3,6 +3,26 @@ from LinkList import LinkList
 from StaticLinkList import StaticLinkList
 from CircularLinkList import CircularLinkList
 from DoublyLinkedList import DoublyLinkedList
+from SequentialStack import SequentialStack
+from ChainStack import ChainStack
+
+
+def ChainStack_test():
+    c = ChainStack([x for x in range(5)])
+    c.pop()
+    print(c.get_top().element)
+    c.push(123)
+    print(c.get_top().element)
+    print(c.stack_lengths())
+
+
+def SequentialStack_test():
+    s = SequentialStack([x for x in range(4)])
+    s.push(123)
+    print(s.get_top())
+    s.pop()
+    print(s.pop())
+    print(s.stack_lengths())
 
 
 def DoublyLinkedList_test():
@@ -31,7 +51,7 @@ def CircularLinkList_test():
     c.pop_tail()
     t = c.get_node_list()
     print(t[3].next.next.next.element)
-    c.list_insert(2,123)
+    c.list_insert(2, 123)
     c.list_delete(1)
     print(c.get_list())
     print(c.locate_elem(3))
@@ -72,7 +92,7 @@ def SqList_test():
 def LinkList_test():
     l = LinkList([x for x in range(5)])
     l.add_head(5)
-    l.list_insert(2,123)
+    l.list_insert(2, 123)
     l.add_head(87)
     l.pop_tail()
     print(l.get_list())
@@ -87,7 +107,9 @@ def LinkList_test():
 
 if __name__ == '__main__':
     # SqList_test()
-    LinkList_test()
+    # LinkList_test()
     # StaticLinkList_test()
-    #CircularLinkList_test()
+    # CircularLinkList_test()
     # DoublyLinkedList_test()
+    # equentialStack_test()
+    ChainStack_test()
