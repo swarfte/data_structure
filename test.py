@@ -5,24 +5,38 @@ from CircularLinkList import CircularLinkList
 from DoublyLinkedList import DoublyLinkedList
 from SequentialStack import SequentialStack
 from ChainStack import ChainStack
+# from SequentialStack import Postfix
+from ChainStack import Postfix
+
+
+
+def postfix_expression_test():
+    infix = "9+(3-1)*3+10/2"
+    # infix = "3*(5+4)"
+    p = Postfix(infix)
+    print(p.get_postfix())
 
 
 def ChainStack_test():
     c = ChainStack([x for x in range(5)])
-    c.pop()
-    print(c.get_top().element)
-    c.push(123)
-    print(c.get_top().element)
-    print(c.stack_lengths())
+    # c.pop()
+    # print(c.get_top().element)
+    # c.push(123)
+    # print(c.get_top().element)
+    # print(c.stack_lengths())
+    while c.stack_empty():
+        print(c.pop())
 
 
 def SequentialStack_test():
     s = SequentialStack([x for x in range(4)])
-    s.push(123)
-    print(s.get_top())
-    s.pop()
-    print(s.pop())
-    print(s.stack_lengths())
+    # s.push(123)
+    # print(s.get_top())
+    # s.pop()
+    # print(s.pop())
+    # print(s.stack_lengths())
+    while s.stack_empty():
+        print(s.pop())
 
 
 def DoublyLinkedList_test():
@@ -111,5 +125,6 @@ if __name__ == '__main__':
     # StaticLinkList_test()
     # CircularLinkList_test()
     # DoublyLinkedList_test()
-    # equentialStack_test()
-    ChainStack_test()
+    # SequentialStack_test()
+    # ChainStack_test()
+    postfix_expression_test()

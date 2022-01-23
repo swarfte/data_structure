@@ -25,7 +25,10 @@ class SequentialStack(object):
         self.__len -= 1
         throw = self.__top
         self.__stack = self.__stack[:-1]
-        self.__top = self.__stack[self.__len - 1]
+        if self.__len > 0:
+            self.__top = self.__stack[self.__len - 1]
+        else:
+            self.__top = None
         return throw
 
     def get_top(self):
@@ -35,4 +38,4 @@ class SequentialStack(object):
         return self.__len
 
     def stack_empty(self):
-        return bool(self.__len)
+        return not bool(self.__len)
