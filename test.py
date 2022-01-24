@@ -5,14 +5,18 @@ from CircularLinkList import CircularLinkList
 from DoublyLinkedList import DoublyLinkedList
 from SequentialStack import SequentialStack
 from ChainStack import ChainStack
-# from SequentialStack import Postfix
-from ChainStack import Postfix
+from SequentialStack import Postfix
 
+
+# from ChainStack import Postfix
 
 
 def postfix_expression_test():
-    infix = "9+(3-1)*3+10/2"
-    # infix = "3*(5+4)"
+    infix = "9+(3-1)*3+10/2"  # 進階的四則運算也OK
+    # infix = "3*(5+4)" # 簡單括號運算OK
+    # infix = "3*5+40/8*5-7/9*5" # 沒括號四則運算OK
+    # infix = "2*3/6" # 同級運算OK
+    print(infix)
     p = Postfix(infix)
     print(p.get_postfix())
 
@@ -104,11 +108,7 @@ def SqList_test():
 
 
 def LinkList_test():
-    l = LinkList([x for x in range(5)])
-    l.add_head(5)
-    l.list_insert(2, 123)
-    l.add_head(87)
-    l.pop_tail()
+    l = LinkList([x for x in range(100, 0, -1)])
     print(l.get_list())
 
 

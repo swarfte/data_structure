@@ -11,7 +11,7 @@ class LinkList(object):  # 創建一個單鏈表
         self.__head = None  # 頭指針
         self.__len = None  # 鏈表長度
         self.clear_list()
-        self.list_change(l)  # 可選的
+        self.list_change(l)  # 可選的初始化
 
     def clear_list(self):
         self.__head = Node()
@@ -21,6 +21,7 @@ class LinkList(object):  # 創建一個單鏈表
         if l is not None:
             for x in l:
                 self.add_tail(x)
+                # self.add_head(x)
 
     def list_length(self):
         return self.__len
