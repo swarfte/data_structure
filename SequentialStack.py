@@ -44,13 +44,16 @@ class SequentialStack(object):
 class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
     def __init__(self, infix_sentence: str = None):
         super(Postfix, self).__init__()
-        self.__stack = SequentialStack()
+        self.__stack = SequentialStack()  # 用於處理表達式
         self.__high = ["*", "/", "%", "("]  # 高優先度
         self.__low = ["+", "-", ")"]  # 低優先度
-        self.__prior_is_number = False
-        self.__prior_is_bracket = False
-        self.__postfix_sentence = ""
-        if infix_sentence is not None:
+        self.__prior_is_number = False  # 判斷是否為連續數字
+        self.__prior_is_bracket = False  # 判斷是否是在括號內
+        self.__postfix_sentence = ""  # 存放後綴表達式
+        self.__symbol = ["+", "-", "*", "/", "%"]  # 用於存放運算符號
+        self.__number_stack = SequentialStack()  # 表達式運算用
+        self.__prior_number = ""  # 存放連續的數字
+        if infix_sentence is not None:  # 初始化轉為中綴表達式(可選)
             self.infix_to_postfix(infix_sentence)
 
     def __priority(self, symbol: str):  # 用於判斷符號的優先度
@@ -109,7 +112,7 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
             self.__infix_to_postfix_stack_empty(symbol)
         else:  # 非空棧的情況
             if self.__priority(symbol) > self.__priority(self.__stack.get_top()) \
-                    or self.__priority(symbol) == self.__priority(self.__stack.get_top())\
+                    or self.__priority(symbol) == self.__priority(self.__stack.get_top()) \
                     and symbol != ")":  # 如果當前的符號優先度大於棧頂
                 self.__infix_to_postfix_greater(symbol)
             else:
@@ -119,16 +122,61 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
         while not self.__stack.stack_empty():
             self.__postfix_sentence += " " + self.__stack.pop()
         self.__postfix_sentence = self.__postfix_sentence.replace(" (", "").replace(" )", "")
+        self.__prior_is_number = False
+        self.__prior_is_bracket = False
 
     def infix_to_postfix(self, infix_sentence: str):  # 中綴表達式轉後綴表達式
         for x in infix_sentence:
-            print("symbol : ", x)
+            # print("symbol : ", x) #測試用 用於觀察當前的符號
             if x.isdigit():
                 self.__infix_to_postfix_digit(x)
             else:
                 self.__infix_to_postfix_symbol(x)
-            print(self.__postfix_sentence)
+            # print(self.__postfix_sentence) # 測試用 用於檢測當前表達式的狀態
         self.__infix_to_postfix_final()
 
     def get_postfix(self):  # 回傳後綴表達式
         return self.__postfix_sentence
+
+    def postfix(self, postfix_sentence: str):
+        self.__postfix_sentence = postfix_sentence
+
+    def calc(self):  # 使用後綴表達式進行運算
+        for x in self.__postfix_sentence:
+            if x.isdigit():  # 數字的情況
+                self.__calc_digits(x)  # 加入數字(未入棧)
+            elif x != " ":
+                self.__calc_symbol(x)  # 進行符號運算
+            else:
+                self.__calc_continuous()  # 把待入棧的數字壓棧
+        return self.__number_stack.pop()
+
+    def __calc_continuous(self):  # 處理連續的數字
+        if self.__prior_is_number:
+            self.__number_stack.push(self.__prior_number)
+            self.__prior_number = ""
+            self.__prior_is_number = False
+
+    def __calc_digits(self, symbol: str):  # 當前元素為數字的處理
+        self.__prior_number += symbol
+        self.__prior_is_number = True
+
+    def __calc_symbol(self, symbol: str):  # 當前元素為符號的處理
+        last_num = float(self.__number_stack.pop())
+        prior_num = float(self.__number_stack.pop())
+        new_num = self.__symbol_operate(last_num, prior_num, symbol)
+        self.__number_stack.push(new_num)
+
+    def __symbol_operate(self, last_num: float, prior_num: float, symbol: str):  # 用於不同符號的運算
+        new_num = 0
+        if symbol == self.__symbol[0]:  # 加法
+            new_num = prior_num + last_num
+        elif symbol == self.__symbol[1]:  # 減法
+            new_num = prior_num - last_num
+        elif symbol == self.__symbol[2]:  # 乘法
+            new_num = prior_num * last_num
+        elif symbol == self.__symbol[3]:  # 除法
+            new_num = prior_num / last_num
+        elif symbol == self.__symbol[4]:  # 餘法
+            new_num = prior_num % last_num
+        return str(new_num)

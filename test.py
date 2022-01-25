@@ -8,17 +8,15 @@ from ChainStack import ChainStack
 from SequentialStack import Postfix
 
 
-# from ChainStack import Postfix
-
-
 def postfix_expression_test():
     infix = "9+(3-1)*3+10/2"  # 進階的四則運算也OK
     # infix = "3*(5+4)" # 簡單括號運算OK
-    # infix = "3*5+40/8*5-7/9*5" # 沒括號四則運算OK
+    # infix = "3*5+40/8*5" # 沒括號四則運算OK
     # infix = "2*3/6" # 同級運算OK
     print(infix)
-    p = Postfix(infix)
-    print(p.get_postfix())
+    c = Postfix(infix)
+    print(c.get_postfix())
+    print(c.calc())
 
 
 def ChainStack_test():
