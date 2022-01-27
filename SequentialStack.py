@@ -1,12 +1,12 @@
 class SequentialStack(object):
-    def __init__(self, l=None):
+    def __init__(self, l: list = None):
         super(SequentialStack, self).__init__()
         self.__stack = []
         self.__top = None
         self.__len = 0
         self.list_change(l)
 
-    def list_change(self, l):
+    def list_change(self, l: list):
         if l is not None:
             for x in l:
                 self.push(x)
@@ -56,7 +56,7 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
         if infix_sentence is not None:  # 初始化轉為中綴表達式(可選)
             self.infix_to_postfix(infix_sentence)
 
-    def __priority(self, symbol: str):  # 用於判斷符號的優先度
+    def __priority(self, symbol: str) -> int:  # 用於判斷符號的優先度
         if symbol in self.__high:
             return 1
         elif symbol in self.__low:
@@ -135,13 +135,13 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
             # print(self.__postfix_sentence) # 測試用 用於檢測當前表達式的狀態
         self.__infix_to_postfix_final()
 
-    def get_postfix(self):  # 回傳後綴表達式
+    def get_postfix(self) -> str:  # 回傳後綴表達式
         return self.__postfix_sentence
 
     def postfix(self, postfix_sentence: str):
         self.__postfix_sentence = postfix_sentence
 
-    def calc(self):  # 使用後綴表達式進行運算
+    def calc(self) -> str:  # 使用後綴表達式進行運算
         for x in self.__postfix_sentence:
             if x.isdigit():  # 數字的情況
                 self.__calc_digits(x)  # 加入數字(未入棧)
@@ -167,7 +167,7 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
         new_num = self.__symbol_operate(last_num, prior_num, symbol)
         self.__number_stack.push(new_num)
 
-    def __symbol_operate(self, last_num: float, prior_num: float, symbol: str):  # 用於不同符號的運算
+    def __symbol_operate(self, last_num: float, prior_num: float, symbol: str) -> str:  # 用於不同符號的運算
         new_num = 0
         if symbol == self.__symbol[0]:  # 加法
             new_num = prior_num + last_num
