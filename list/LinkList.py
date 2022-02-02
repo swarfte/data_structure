@@ -6,27 +6,27 @@ class Node(object):  # 創建一個節點
 
 
 class LinkList(object):  # 創建一個單鏈表
-    def __init__(self, l=None):
+    def __init__(self, l: list = None):
         super(LinkList, self).__init__()
         self.__head = None  # 頭指針
         self.__len = None  # 鏈表長度
         self.clear_list()
-        self.list_change(l)  # 可選的初始化
+        self.list_convert(l)  # 可選的初始化
 
-    def clear_list(self):
+    def clear_list(self) -> None:
         self.__head = Node()
         self.__len = 0
 
-    def list_change(self, l):
+    def list_convert(self, l) -> None:
         if l is not None:
             for x in l:
                 self.add_tail(x)
                 # self.add_head(x)
 
-    def list_length(self):
+    def list_length(self) -> int:
         return self.__len
 
-    def locate_elem(self, e):
+    def locate_elem(self, e: object) -> bool:
         p = self.__head.next
         for x in range(self.__len):
             if p.element == e:
@@ -34,17 +34,17 @@ class LinkList(object):  # 創建一個單鏈表
             p = p.next
         return False
 
-    def list_empty(self):
+    def list_empty(self) -> bool:
         return bool(self.__len)
 
-    def add_head(self, e):
+    def add_head(self, e: object) -> None:
         new_node = Node(e)
         p = self.__head
         new_node.next = p.next
         p.next = new_node
         self.__len += 1
 
-    def add_tail(self, e):
+    def add_tail(self, e: object) -> None:
         new_node = Node(e)
         p = self.__head
         for x in range(self.__len):
@@ -52,15 +52,14 @@ class LinkList(object):  # 創建一個單鏈表
         p.next = new_node
         self.__len += 1
 
-
-    def pop_head(self):
+    def pop_head(self) -> object:
         self.__len -= 1
         p = self.__head
         n = self.__head.next
         p.next = p.next.next
         return n.element
 
-    def pop_tail(self):
+    def pop_tail(self) -> object:
         self.__len -= 1
         p = self.__head
         for x in range(self.__len):
@@ -69,8 +68,7 @@ class LinkList(object):  # 創建一個單鏈表
         p.next = None
         return n.element
 
-
-    def list_insert(self, index, e):
+    def list_insert(self, index: int, e: object) -> None:
         new_node = Node(e)
         p = self.__head
         for x in range(index):
@@ -79,7 +77,7 @@ class LinkList(object):  # 創建一個單鏈表
         p.next = new_node
         self.__len += 1
 
-    def list_delete(self, index):
+    def list_delete(self, index: int) -> object:
         self.__len -= 1
         p = self.__head
         for x in range(index):
@@ -88,25 +86,25 @@ class LinkList(object):  # 創建一個單鏈表
         p.next = p.next.next
         return n.element
 
-    def get_elem(self, index):
+    def get_elem(self, index: int) -> object:
         p = self.__head.next
         for x in range(index):
             p = p.next
         return p.element
 
-    def get_node(self, index):
+    def get_node(self, index: int) -> Node:
         p = self.__head.next
         for x in range(index):
             p = p.next
         return p
 
-    def get_list(self):
+    def get_list(self) -> list:
         l = []
         for x in range(self.__len):
             l.append(self.get_elem(x))
         return l
 
-    def get_node_list(self):
+    def get_node_list(self) -> list:
         l = []
         for x in range(self.__len):
             l.append(self.get_node(x))

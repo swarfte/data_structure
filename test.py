@@ -1,11 +1,12 @@
-from SqList import SqList
-from LinkList import LinkList
-from StaticLinkList import StaticLinkList
-from CircularLinkList import CircularLinkList
-from DoublyLinkedList import DoublyLinkedList
-from SequentialStack import SequentialStack
-from ChainStack import ChainStack
-from SequentialStack import Postfix
+from list.SqList import SqList
+from list.LinkList import LinkList
+from list.StaticLinkList import StaticLinkList
+from list.CircularLinkList import CircularLinkList
+from list.DoublyLinkedList import DoublyLinkedList
+from stack.SequentialStack import SequentialStack
+from stack.ChainStack import ChainStack
+from stack.SequentialStack import Postfix
+from queue.SqQueue import *
 
 
 def postfix_expression_test():
@@ -111,10 +112,10 @@ def LinkList_test():
 
 
 # def my_gen(n):
-#     i = 0
-#     while i < n:
-#         yield i
-#         i += 1
+#     index = 0
+#     while index < n:
+#         yield index
+#         index += 1
 
 
 if __name__ == '__main__':

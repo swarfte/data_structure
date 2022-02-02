@@ -4,24 +4,24 @@ class SequentialStack(object):
         self.__stack = []
         self.__top = None
         self.__len = 0
-        self.list_change(l)
+        self.list_convert(l)
 
-    def list_change(self, l: list):
+    def list_convert(self, l: list) -> None:
         if l is not None:
             for x in l:
                 self.push(x)
 
-    def clear_stack(self):
+    def clear_stack(self) -> None:
         self.__stack = []
         self.__top = None
         self.__len = 0
 
-    def push(self, e):
+    def push(self, e: object) -> None:
         self.__len += 1
         self.__top = e
         self.__stack.append(self.__top)
 
-    def pop(self):
+    def pop(self) -> object:
         self.__len -= 1
         throw = self.__top
         self.__stack = self.__stack[:-1]
@@ -31,13 +31,13 @@ class SequentialStack(object):
             self.__top = None
         return throw
 
-    def get_top(self):
+    def get_top(self) -> object:
         return self.__top
 
-    def stack_lengths(self):
+    def stack_lengths(self) -> int:
         return self.__len
 
-    def stack_empty(self):
+    def stack_empty(self) -> bool:
         return not bool(self.__len)
 
 
@@ -62,7 +62,7 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
         elif symbol in self.__low:
             return 0
 
-    def __infix_to_postfix_digit(self, number: str):  # 把中綴表達式的數字轉換為後綴表達式的形式
+    def __infix_to_postfix_digit(self, number: str) -> None:  # 把中綴表達式的數字轉換為後綴表達式的形式
         if len(self.__postfix_sentence) == 0:  # 第一個數字的時候(中綴表達式開頭必為數字或括號)
             self.__postfix_sentence += number
         else:
@@ -72,10 +72,10 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
                 self.__postfix_sentence += " " + number
         self.__prior_is_number = True  # 用於判斷是否為連續數字
 
-    def __infix_to_postfix_stack_empty(self, symbol: str):  # 空棧時壓入當前符號
+    def __infix_to_postfix_stack_empty(self, symbol: str) -> None:  # 空棧時壓入當前符號
         self.__stack.push(symbol)
 
-    def __infix_to_postfix_greater(self, symbol: str):  # 如果當前的符號優先度大於棧頂時壓入當前符號
+    def __infix_to_postfix_greater(self, symbol: str) -> None:  # 如果當前的符號優先度大於棧頂時壓入當前符號
         if self.__priority(symbol) == self.__priority(self.__stack.get_top()) \
                 and not self.__prior_is_bracket and symbol != "(":  # 如果同為高優先度符號
             self.__postfix_sentence += " " + self.__stack.pop()
@@ -84,13 +84,13 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
         if symbol == "(":
             self.__prior_is_bracket = True
 
-    def __infix_to_postfix_lower(self, symbol: str):  # #棧頂為高優先度符號 目前元素為低優先度符號
+    def __infix_to_postfix_lower(self, symbol: str) -> None:  # #棧頂為高優先度符號 目前元素為低優先度符號
         if symbol == ")":
             self.__infix_to_postfix_lower_bracket(symbol)  # 針對右括號的操作
         else:
             self.__infix_to_postfix_lower_operate(symbol)
 
-    def __infix_to_postfix_lower_operate(self, symbol: str):  # 常規低優先度符號操作
+    def __infix_to_postfix_lower_operate(self, symbol: str) -> None:  # 常規低優先度符號操作
         while not self.__stack.stack_empty():
             if self.__priority(symbol) < self.__priority(self.__stack.get_top()) and not self.__prior_is_bracket:
                 self.__postfix_sentence += " " + self.__stack.pop()
@@ -99,14 +99,14 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
         # self.__postfix_sentence += " " + self.__stack.pop()
         self.__stack.push(symbol)
 
-    def __infix_to_postfix_lower_bracket(self, symbol: str):  # 當前符號為右括號的情況
+    def __infix_to_postfix_lower_bracket(self) -> None:  # 當前符號為右括號的情況
         while not self.__stack.stack_empty():
             if self.__stack.get_top() != "(":
                 self.__postfix_sentence += " " + self.__stack.pop()
             else:
                 break
 
-    def __infix_to_postfix_symbol(self, symbol: str):  # 把中綴表達式的符號轉換為後綴表達式
+    def __infix_to_postfix_symbol(self, symbol: str) -> None:  # 把中綴表達式的符號轉換為後綴表達式
         self.__prior_is_number = False
         if self.__stack.stack_empty():  # 如果為空棧
             self.__infix_to_postfix_stack_empty(symbol)
@@ -118,14 +118,14 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
             else:
                 self.__infix_to_postfix_lower(symbol)
 
-    def __infix_to_postfix_final(self):  # 在表達式的最後把棧中全部符號按輸序輸出
+    def __infix_to_postfix_final(self) -> None:  # 在表達式的最後把棧中全部符號按輸序輸出
         while not self.__stack.stack_empty():
             self.__postfix_sentence += " " + self.__stack.pop()
         self.__postfix_sentence = self.__postfix_sentence.replace(" (", "").replace(" )", "")
         self.__prior_is_number = False
         self.__prior_is_bracket = False
 
-    def infix_to_postfix(self, infix_sentence: str):  # 中綴表達式轉後綴表達式
+    def infix_to_postfix(self, infix_sentence: str) -> None:  # 中綴表達式轉後綴表達式
         for x in infix_sentence:
             # print("symbol : ", x) #測試用 用於觀察當前的符號
             if x.isdigit():
@@ -151,17 +151,17 @@ class Postfix(object):  # 用於把中綴表達式轉換為後綴表達式
                 self.__calc_continuous()  # 把待入棧的數字壓棧
         return self.__number_stack.pop()
 
-    def __calc_continuous(self):  # 處理連續的數字
+    def __calc_continuous(self) -> None:  # 處理連續的數字
         if self.__prior_is_number:
             self.__number_stack.push(self.__prior_number)
             self.__prior_number = ""
             self.__prior_is_number = False
 
-    def __calc_digits(self, symbol: str):  # 當前元素為數字的處理
+    def __calc_digits(self, symbol: str) -> None:  # 當前元素為數字的處理
         self.__prior_number += symbol
         self.__prior_is_number = True
 
-    def __calc_symbol(self, symbol: str):  # 當前元素為符號的處理
+    def __calc_symbol(self, symbol: str) -> None:  # 當前元素為符號的處理
         last_num = float(self.__number_stack.pop())
         prior_num = float(self.__number_stack.pop())
         new_num = self.__symbol_operate(last_num, prior_num, symbol)
