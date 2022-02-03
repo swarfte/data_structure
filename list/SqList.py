@@ -1,14 +1,14 @@
 class SqList(object):
-    def __init__(self, DataType: object, L: list = None):  # 初始化操作,建立一個空的線性表
+    def __init__(self, DataType: object, l: list = None):  # 初始化操作,建立一個空的線性表
         super(SqList, self).__init__()
         self.__data_type = DataType  # 每個類型均為DataType(即單一類型)
         self.__list = []
         self.__list_len = 0
-        self.list_convert(L)
+        self.list_convert(l)
 
-    def list_convert(self, L: list) -> None:
-        if L is not None:
-            for x in L:
+    def list_convert(self, l: list) -> None:
+        if l is not None:
+            for x in l:
                 self.add_tail(x)
 
     def list_empty(self) -> bool:  # 若線性表為空,返回True,否則返回False

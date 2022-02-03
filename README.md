@@ -37,11 +37,12 @@
   >* stack_lengths():返回棧的長度
 # 隊列(queue)
 >* SqQueue.py 線性隊列
+>* ChainQueue 鏈式隊列
 * ## 基本功能
   >* __init__():初始化, 建立一個空隊列
   >* clear_queue():將隊列清空
   >* queue_empty():若隊列為空,返回true,否則返回false
   >* get_head():若隊列為非空,返回隊列的隊頭元素
-  >* en_queue(e):插入元素e至隊列並成為隊尾元素
-  >* de_queue():剛除並返回隊列中的隊頭元素
+  >* enter_queue(e):插入元素e至隊列並成為隊尾元素
+  >* delete_queue():剛除並返回隊列中的隊頭元素
   >* queue_length():返回隊列的元素個數

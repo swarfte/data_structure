@@ -6,7 +6,25 @@ from list.DoublyLinkedList import DoublyLinkedList
 from stack.SequentialStack import SequentialStack
 from stack.ChainStack import ChainStack
 from stack.SequentialStack import Postfix
-from queue.SqQueue import *
+from queue.SqQueue import SqQueue
+from queue.ChainQueue import ChainQueue
+
+def ChainQueue_test():
+    c = ChainQueue([x for x in range(10)])
+    print(c.get_head())
+    print(c.get_queue())
+    print(c.delete_queue())
+    print(c.delete_queue())
+    print(c.get_queue())
+    print(c.queue_length())
+
+
+def SqQueue_test():
+    s = SqQueue([x for x in range(5)])
+    print(s.queue_length())
+    print(s)
+    print(s.delete_queue())
+    print(s)
 
 
 def postfix_expression_test():
@@ -126,4 +144,6 @@ if __name__ == '__main__':
     # DoublyLinkedList_test()
     # SequentialStack_test()
     # ChainStack_test()
-    postfix_expression_test()
+    # postfix_expression_test()
+    #SqQueue_test()
+    ChainQueue_test()
