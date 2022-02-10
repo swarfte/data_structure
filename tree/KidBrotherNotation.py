@@ -34,7 +34,7 @@ class PTree(object):
     def right_sibling(self, cur: PTNode) -> PTNode | None:
         pass
 
-    def insert_child(self, i: int, c: "PTree") -> None:
+    def insert_child(self, i: int, c: "CTree") -> None:
         pass
 
     def delete_child(self, cur: PTNode, i: int) -> None:

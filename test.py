@@ -61,11 +61,11 @@ def postfix_expression_test():
 
 def ChainStack_test():
     c = ChainStack([x for x in range(5)])
-    # c.pop()
-    # print(c.get_top().element)
-    # c.push(123)
-    # print(c.get_top().element)
-    # print(c.stack_lengths())
+    c.pop()
+    print(c.get_top().element)
+    c.push(123)
+    print(c.get_top().element)
+    print(c.stack_lengths())
     while c.stack_empty():
         print(c.pop())
 

@@ -1,21 +1,21 @@
-class PTNode(object):
-    def __init__(self, data=None, parent=-1):
+class PTNode(object):  # 節點結構
+    def __init__(self, data: object = None, parent: int = -1):
         super(PTNode, self).__init__()
-        self.data = data
-        self.parent = parent
+        self.data = data  # 存放該節點的數據
+        self.parent = parent  # 指向其父母的下標
 
 
-class PTree(object):
+class PTree(object):  # 樹結構
     def __init__(self, l: list = None):
         super(PTree, self).__init__()
-        self.nodes = []
+        self.nodes = []  # 存放節點
         self.r = None  # 根的位置
         self.n = 0  # 結點數
 
     def clear_tree(self) -> None:
         self.nodes = []
-        self.r = None  # 根的位置
-        self.n = 0  # 結點數
+        self.r = None
+        self.n = 0
 
     def create_tree(self, l: list) -> None:
         if l is not None:
