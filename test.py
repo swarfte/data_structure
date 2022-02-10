@@ -8,6 +8,27 @@ from stack.ChainStack import ChainStack
 from stack.SequentialStack import Postfix
 from queue.SqQueue import SqQueue
 from queue.ChainQueue import ChainQueue
+from tree.ParentalNotation import PTree, PTNode
+
+
+def PTree_test():
+    p = PTree()
+    p.insert(PTNode("A"))
+    root = p.root()
+    # print(p.root().data)
+    p.insert(root, PTNode("B"))
+    p.insert(root, PTNode("C"))
+    root_child = p.all_child(root)
+    p.insert(root_child[0], PTNode("D"))
+    p.insert(root_child[1], PTNode("E"))
+    p.insert(root_child[1], PTNode("F"))
+    b_child = p.left_child(root_child[0])
+    p.insert(b_child, PTNode("G"))
+    p.insert(b_child, PTNode("H"))
+    p.insert(b_child, PTNode("I"))
+    c_child = p.all_child(root_child[1])
+    p.insert(c_child[0], PTNode("I"))
+
 
 def ChainQueue_test():
     c = ChainQueue([x for x in range(10)])
@@ -145,5 +166,6 @@ if __name__ == '__main__':
     # SequentialStack_test()
     # ChainStack_test()
     # postfix_expression_test()
-    #SqQueue_test()
-    ChainQueue_test()
+    # SqQueue_test()
+    # ChainQueue_test()
+    PTree_test()

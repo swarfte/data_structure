@@ -3,10 +3,10 @@
 
 ## 目錄
 
-> * [線性表(list)](#線性表(list))
->* [棧(stack)](#棧(stack))
->* [隊列(queue)](#隊列(queue))
->* [樹(tree)](#樹(tree))
+>* [list](#線性表(list))
+>* [stack](#棧(stack))
+>* [queue](#隊列(queue))
+>* [tree](#樹(tree))
 
 # 線性表(list)
 
@@ -72,7 +72,7 @@
   >* tree_depth():返回樹的深度
   >* value(cur_e):cur_e是樹中的一個節點,返回該節點的值
   >* parent(cur_e):若cur_e為樹的非根節點,返回它的雙親,否則返回空
-  >* left_child(cur_e):若cure_有左兄弟,則返回它的左兄弟,否則返回空
-  >* right_child(cur_e):若cure_有右兄弟,則返回它的右兄弟,否則返回空
-  >* insert_child(p,index,c):cur_e為T的某個節點,i為指節點p的度加上1,插入c為樹中p所指節點的第index棵子樹
+  >* left_child(cur_e):若cur_e有左兄弟,則返回它的左兄弟,否則返回空
+  >* right_child(cur_e):若cur_e有右兄弟,則返回它的右兄弟,否則返回空
+  >* insert_child(cur_e,c):cur_e為樹中的節點,c為要插在cur_e後的節點
   >* delete_child(p,i):p為樹中某個節點,i為節點p的度,刪除機中p所轉結點的第i棵子樹
