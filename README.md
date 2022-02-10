@@ -3,10 +3,10 @@
 
 ## 目錄
 
->* [list](#線性表(list))
->* [stack](#棧(stack))
->* [queue](#隊列(queue))
->* [tree](#樹(tree))
+>* [list](#線性表list)
+>* [stack](#棧stack)
+>* [queue](#隊列queue)
+>* [tree](#樹tree)
 
 # 線性表(list)
 
