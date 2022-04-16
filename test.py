@@ -6,9 +6,30 @@ from list.DoublyLinkedList import DoublyLinkedList
 from stack.SequentialStack import SequentialStack
 from stack.ChainStack import ChainStack
 from stack.SequentialStack import Postfix
-from queue.SqQueue import SqQueue
-from queue.ChainQueue import ChainQueue
+from pyqueue.SqQueue import SqQueue
+from pyqueue.ChainQueue import ChainQueue
 from tree.ParentalNotation import PTree, PTNode
+from binary_tree.LinkBinaryTree import LinkBinaryTree, BinaryTreeNode
+
+
+def LinkBinaryTree_test():
+    # tree = LinkBinaryTree((BinaryTreeNode(x) for x in
+    #                        ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
+    #                         "s", "t", "u", "v", "w", "x", "y", "z"]))
+    tree = LinkBinaryTree((BinaryTreeNode(x) for x in range(1, 111111)))
+    root = tree.root
+    # print(root.right.left.right.left.data)  # 1 ->3-> 6-> 13-> 26(z)
+    # print(tree[0].data)
+    print([x.data for x in tree.preorder_traverse()])
+    print([x.data for x in tree.inorder_traverse()])
+    print([x.data for x in tree.postorder_traverse()])
+    print([x.data for x in tree.bfs_traverse()])
+    print(tree.height)
+    # print(tree.find_node_path(14))
+    # for x in tree:
+    #     print(x.data)
+    # print(len(tree))
+    pass
 
 
 def PTree_test():
@@ -26,8 +47,10 @@ def PTree_test():
     p.insert(b_child, PTNode("G"))
     p.insert(b_child, PTNode("H"))
     p.insert(b_child, PTNode("I"))
-    c_child = p.all_child(root_child[1])
-    p.insert(c_child[0], PTNode("I"))
+    p.delete_child(b_child, 1)  # 刪去了中間的"H"節點
+    for x in p.all_child(b_child):
+        print(x.data)
+    print(p.tree_depth())
 
 
 def ChainQueue_test():
@@ -168,4 +191,5 @@ if __name__ == '__main__':
     # postfix_expression_test()
     # SqQueue_test()
     # ChainQueue_test()
-    PTree_test()
+    # PTree_test()
+    LinkBinaryTree_test()

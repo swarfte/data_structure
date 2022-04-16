@@ -6,7 +6,7 @@ class PTNode(object):  # 節點結構
 
 
 class PTree(object):  # 樹結構
-    def __init__(self, l: list = None):
+    def __init__(self):
         super(PTree, self).__init__()
         self.nodes = []  # 存放節點
         self.r = None  # 根的位置
@@ -17,21 +17,12 @@ class PTree(object):  # 樹結構
         self.r = None
         self.n = 0
 
-    def create_tree(self, l: list) -> None:
-        if l is not None:
-            pass
-
     def tree_empty(self) -> bool:
-        return not bool(len(self.nodes))
+        return not bool(self.n)
 
     def tree_depth(self) -> int:
-        d = 0
-        if not self.tree_empty():
-            for x in self.nodes:
-                if d < x.parent:
-                    d = x.parent
-            return d + 2
-        return d
+        # 應使用DFS算法
+        pass
 
     def root(self) -> PTNode:
         return self.r
@@ -43,18 +34,9 @@ class PTree(object):  # 樹結構
         return self.nodes[cur.parent]
 
     def left_child(self, cur: PTNode) -> PTNode | None:
-        # for x in self.nodes:
-        #     if x.parent == self.nodes.index(cur):
-        #         return x
-        #
-        # return None
         return self.all_child(cur)[0]
 
     def right_sibling(self, cur: PTNode) -> PTNode | None:
-        # for x in self.nodes:
-        #     if x.parent == cur.parent:
-        #         return x
-        # return None
         return self.all_sibling(cur)[0]
 
     def insert_child(self, cur: PTNode, c: PTNode) -> None:
@@ -63,13 +45,13 @@ class PTree(object):  # 樹結構
         self.n += 1
 
     def delete_child(self, cur: PTNode, i: int) -> None:
-        run = i
+        run = i + 1
         temp = None
         for x in self.nodes:
-            if i:
+            if run:
                 if x.parent == self.nodes.index(cur):
                     temp = x
-                    i -= 1
+                    run -= 1
             else:
                 self.nodes.pop(self.nodes.index(temp))
 
@@ -95,6 +77,6 @@ class PTree(object):  # 樹結構
     def all_sibling(self, cur: PTNode) -> list:
         temp = []
         for x in self.nodes:
-            if x.parent == cur.parent:
+            if x.parent == cur.parent and x != cur:
                 temp.append(x)
         return temp

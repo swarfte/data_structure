@@ -61,7 +61,7 @@
 
 # 樹(tree)
 
-> * ParentalNotation.py 雙親表示法
+>* ParentalNotation.py 雙親表示法
 >* ChildNotation.py 孩子表示法
 >* KidBrotherNotation.py 孩子兄弟表示法
 

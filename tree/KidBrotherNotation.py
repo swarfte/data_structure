@@ -13,9 +13,6 @@ class PTree(object):
     def clear_tree(self) -> None:
         pass
 
-    def create_tree(self, l: list) -> None:
-        pass
-
     def tree_empty(self) -> bool:
         pass
 
