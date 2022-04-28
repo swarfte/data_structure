@@ -23,24 +23,54 @@ class LinkBinaryTree(object):  # 鏈表二叉樹
     def __getitem__(self, index: int) -> BinaryTreeNode:  # 獲取指定節點
         return self.find_node(index)
 
-    def __setitem__(self, index: int) -> None:  # 設定節點
-        pass
+    def __setitem__(self, key: int, value) -> None:  # 設定節點
+        node = self.find_node(key)
+        node = value
+        self.check_member()
 
     def __iter__(self) -> BinaryTreeNode:  # 按高度依次生成元素(bfs)
-        if self.__bool__():
-            yield from self.bfs_traverse()
+        yield from self.bfs_traverse()
 
-    def __delitem__(self, index: int) -> None:  # 刪除指定位置節點
-        pass
+    def __delitem__(self, index: int) -> BinaryTreeNode:  # 刪除指定素引值的節點
+        node = self.find_node(index)
+        node.data, node.left, node.right = None, None, None
+        self.check_member()
+        return self.root
 
-    def __add__(self, node: BinaryTreeNode) -> None:  # 順序插入節點
+    def __add__(self, node: BinaryTreeNode) -> BinaryTreeNode:  # 順序插入節點
         self.order_insert(node)
+        return self.root
 
-    def __sub__(self, node: BinaryTreeNode) -> None:  # 刪除指定的節點
-        pass
+    def __sub__(self, node: BinaryTreeNode) -> BinaryTreeNode:  # 刪除指定的節點
+        nodes = self.bfs_traverse()
+        t = None
+        for x in nodes:
+            if node.data == x.data:
+                x.data, x.left, x.right = None, None, None
+                break
+        self.check_member()
+        return self.root
 
-    def check_index(self, index: int) -> bool:  # 檢測索引值是否合理
-        return True if index < self.members else False
+    def __str__(self) -> str: # 輸出tree的狀態(BFS遍歷)
+        return "".join([f"{x.data}->" for x in self])
+
+    def check_member(self) -> None:  # 檢查當前二叉樹的情況
+        self.members = len(list(self.bfs_traverse()))
+        t = self.members
+        h = 0  # 根節點為0
+        while t > 1:
+            t //= 2
+            h += 1
+        self.height = h
+
+    def addition_node(self) -> None:  # 當新增節點時改變樹的狀態
+        self.members += 1
+        t = self.members
+        h = 0  # 根節點為0
+        while t > 1:
+            t //= 2
+            h += 1
+        self.height = h
 
     def find_node(self, index: int) -> BinaryTreeNode:  # 返回指定素引值的節點
         t = self.root
@@ -97,21 +127,13 @@ class LinkBinaryTree(object):  # 鏈表二叉樹
         data, queue = [], [self.root]
         while queue:
             nodes = queue.pop(0)
-            data.append(nodes)
-            if nodes.left:
-                queue.append(nodes.left)
-            if nodes.right:
-                queue.append(nodes.right)
+            if nodes is not None:
+                data.append(nodes)
+                if nodes.left:
+                    queue.append(nodes.left)
+                if nodes.right:
+                    queue.append(nodes.right)
         yield from data
-
-    def addition_node(self) -> None:  # 當新增節點時改變樹的狀態
-        self.members += 1
-        t = self.members
-        h = 0  # 根節點為0
-        while t > 1:
-            t //= 2
-            h += 1
-        self.height = h
 
     def order_insert(self, node: BinaryTreeNode) -> None:  # 順序插入法
         self.addition_node()

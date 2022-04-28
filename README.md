@@ -3,10 +3,11 @@
 
 ## 目錄
 
->* [list](#線性表list)
+> * [list](#線性表list)
 >* [stack](#棧stack)
 >* [queue](#隊列queue)
 >* [tree](#樹tree)
+>* [graph](#圖graph)
 
 # 線性表(list)
 
@@ -61,7 +62,7 @@
 
 # 樹(tree)
 
->* ParentalNotation.py 雙親表示法
+> * ParentalNotation.py 雙親表示法
 >* ChildNotation.py 孩子表示法
 >* KidBrotherNotation.py 孩子兄弟表示法
 
@@ -76,3 +77,21 @@
   >* right_child(cur_e):若cur_e有右兄弟,則返回它的右兄弟,否則返回空
   >* insert_child(cur_e,c):cur_e為樹中的節點,c為要插在cur_e後的節點
   >* delete_child(p,i):p為樹中某個節點,i為節點p的度,刪除機中p所轉結點的第i棵子樹
+
+# 圖(graph)
+
+* ## 基本功能
+  > * __init__():初始化,構造一個圖
+  > * create_graph(v,r): 按照頂點v和弧邊r構建圖
+  > * destroy_graph(): 若圖存在,則銷毀圖
+  > * locate_vex(u):若圖中存在頂點u,返回u在圖中的位置
+  > * get_vex(v):返回圖中頂點v的值
+  > * put_vex(v,value):對圖中頂點v賦值value
+  > * first_AdjVex(v): 返回v的一個鄰近頂點,若沒有鄰近頂點則返回None
+  > * next_AdjVex(v,w): 返回頂點v相對於頂點w的下一個鄰接頂點,若w是v的最後一個鄰接點則返回None
+  > * insert_vex(v):在圖中增添新頂點v
+  > * delete_vex(v): 在圖中刪除頂點v及其相關的弧
+  > * insert_arc(v,w): 在圖中增添弧<v,w>,若圖是無向圖,則需要增添對稱弧<w,v>
+  > * delete_arc(v,w): 在圖中刪除弧<v,w>,若圖是無向圖,則需要刪除對稱弧<w,v>
+  > * dfs_traverse(): 對圖進行深度優先遍歷,在遍歷過程中對每個頂點調用
+  > * bfs_traverse(): 對圖進制廣度優先遍歷,在遍歷過程中對每個頂點調用

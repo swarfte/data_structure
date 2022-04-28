@@ -9,26 +9,45 @@ from stack.SequentialStack import Postfix
 from pyqueue.SqQueue import SqQueue
 from pyqueue.ChainQueue import ChainQueue
 from tree.ParentalNotation import PTree, PTNode
-from binary_tree.LinkBinaryTree import LinkBinaryTree, BinaryTreeNode
+from tree.LinkBinaryTree import LinkBinaryTree, BinaryTreeNode
+from graph.MatrixGraph import MatrixGraph
+
+def MatrixGraph_test():
+    pass
 
 
 def LinkBinaryTree_test():
     # tree = LinkBinaryTree((BinaryTreeNode(x) for x in
     #                        ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
     #                         "s", "t", "u", "v", "w", "x", "y", "z"]))
-    tree = LinkBinaryTree((BinaryTreeNode(x) for x in range(1, 111111)))
+    tree = LinkBinaryTree((BinaryTreeNode(x) for x in range(1, 123)))
     root = tree.root
+    print(len(tree))
+    print(tree)
+    tree - BinaryTreeNode(3)
+    print(len(tree))
+    print(tree)
     # print(root.right.left.right.left.data)  # 1 ->3-> 6-> 13-> 26(z)
-    # print(tree[0].data)
-    print([x.data for x in tree.preorder_traverse()])
-    print([x.data for x in tree.inorder_traverse()])
-    print([x.data for x in tree.postorder_traverse()])
-    print([x.data for x in tree.bfs_traverse()])
-    print(tree.height)
+    # print(tree[10].data)
+    # tree[10].data = 55
+    # print(tree[10].data)
+    #
+    # print(tree[10].left.data)
+    # tree[10].left = tree[11].right
+    # print(tree[10].left.data)
+    # print(len(tree))
+    # del tree[3]
+    # print(len(tree))
+    # # print([x.data for x in tree.preorder_traverse()])
+    # print([x.data for x in tree.inorder_traverse()])
+    # print([x.data for x in tree.postorder_traverse()])
+    # print([x.data for x in tree.bfs_traverse()])
+    # print(tree.height)
     # print(tree.find_node_path(14))
     # for x in tree:
     #     print(x.data)
     # print(len(tree))
+
     pass
 
 
