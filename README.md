@@ -65,6 +65,7 @@
 > * ParentalNotation.py 雙親表示法
 >* ChildNotation.py 孩子表示法
 >* KidBrotherNotation.py 孩子兄弟表示法
+>* LinkBinaryTree.py 鏈表二叉樹
 
 * ## 基本功能
   > * __init__():初始化,構造一個空樹
@@ -79,6 +80,7 @@
   >* delete_child(p,i):p為樹中某個節點,i為節點p的度,刪除機中p所轉結點的第i棵子樹
 
 # 圖(graph)
+* MatrixGraph.py 鄰接矩陣圖
 
 * ## 基本功能
   > * __init__():初始化,構造一個圖

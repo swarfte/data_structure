@@ -12,8 +12,31 @@ from tree.ParentalNotation import PTree, PTNode
 from tree.LinkBinaryTree import LinkBinaryTree, BinaryTreeNode
 from graph.MatrixGraph import MatrixGraph
 
+
 def MatrixGraph_test():
-    pass
+    vex = {
+        "a": 1,
+        "b": 2,
+        "c": 3,
+        "d": 4
+    }
+    relationship = {
+        "a": {"b", "c", "d"},
+        "b": {"a", "d"},
+        "c": {"d", "a"},
+        "d": {"a", "c", "b"}
+    }
+    graph = MatrixGraph(vex, relationship)
+    #graph.insert_vex("e", 5)
+    graph + {"e":5}
+    graph.insert_arc("a","e")
+    graph.insert_arc("e","a")
+    graph.delete_arc("d","a")
+    graph.delete_vex("c")
+    print(graph.relationship)
+    print(graph.vertexes)
+    print(graph.vertex_number)
+    print(graph)
 
 
 def LinkBinaryTree_test():
@@ -211,4 +234,6 @@ if __name__ == '__main__':
     # SqQueue_test()
     # ChainQueue_test()
     # PTree_test()
-    LinkBinaryTree_test()
+    # LinkBinaryTree_test()
+    MatrixGraph_test()
+    pass
