@@ -1,3 +1,16 @@
+from re import L
+import re
+from tkinter.messagebox import NO
+
+
+class BinaryTreeNode(object):
+    def __init__(self, data=None, left=None, right=None):
+        self.data = data
+        self.left = left
+        self.right = right
+
+    def __str__(self):
+        return  f"data = {self.data} \n {self.data} -> left_node = {self.left} \n {self.data} -> right_node = {self.right}"
 
 
 class AdjacencyMatrix(object):
@@ -10,11 +23,7 @@ class AdjacencyMatrix(object):
         self.create_graph(vexes)
 
     def __str__(self):
-        sentence = ""
-        for arc in self.arcs:
-            sentence += str(arc)
-            sentence += "\n"
-        return sentence
+        return "".join([str(arc) + "\n" for arc in self.arcs])
 
     def create_graph(self, vexes: list) -> None:
         if vexes:
@@ -77,30 +86,30 @@ class AdjacencyMatrix(object):
         traverse = []
         stack = []
         temp = []
-        i = self.locate_vex(vex)
-        for j in range(len(self.vexes)):
-            if self.minimum < self.arcs[i][j] < self.maximum:
-                temp.append(self.vexes[j])
+        out_vex = self.locate_vex(vex)
+        for in_vex in range(len(self.vexes)):
+            if self.minimum < self.arcs[out_vex][in_vex] < self.maximum:
+                temp.append(self.vexes[in_vex])
         stack.extend(temp[::-1])
-        check[i] = True
+        check[out_vex] = True
         traverse.append(vex)
 
         # for the state vex
         while stack:
             current_vex = stack.pop()
-            i = self.locate_vex(current_vex)
-            if not check[i]:
+            out_vex = self.locate_vex(current_vex)
+            if not check[out_vex]:
                 temp = []
-                for j in range(len(self.vexes)):
-                    if self.minimum < self.arcs[i][j] < self.maximum:
-                        temp.append(self.vexes[j])
+                for in_vex in range(len(self.vexes)):
+                    if self.minimum < self.arcs[out_vex][in_vex] < self.maximum:
+                        temp.append(self.vexes[in_vex])
                 stack.extend(temp[::-1])
-                check[i] = True
+                check[out_vex] = True
                 traverse.append(current_vex)
         return traverse
 
     def bfs_traverse(self, vex: str) -> list:
-        # for the first vex
+        # for the first vex 
         check = [False for _ in self.vexes]
         traverse = []
         queue = []
@@ -123,6 +132,71 @@ class AdjacencyMatrix(object):
                 traverse.append(current_vex)
         return traverse
 
-    def small_tree(self,vex:str) -> list:
+    def find_all_arcs(self, vex: str) -> list:
+        arcs = []
+        index = self.locate_vex(vex)
+        for i in range(len(self.vexes)):
+            relationship = []
+            if self.minimum < self.arcs[index][i] < self.maximum:
+                relationship.append(index)
+                relationship.append(i)
+                relationship.append(self.arcs[index][i])
+                arcs.append(relationship)
+        return arcs
 
-        pass
+    def vex_minimum(self, vex: str) -> list:
+        minimum = [0, 0, self.maximum]
+        out_vex = self.locate_vex(vex)
+        for in_vex in range(len(self.arcs)):
+            if self.minimum < self.arcs[out_vex][in_vex] < self.maximum:
+                if self.arcs[out_vex][in_vex] < minimum[2]:
+                    minimum = [out_vex, in_vex, self.arcs[out_vex][in_vex]]
+        return minimum
+
+    def arc_minimum(self, arcs: list) -> list:
+        minimum = [0, 0, self.maximum]
+        for arc in arcs:
+            if arc[2] < minimum[2]:
+                minimum = arc
+        return minimum
+    
+    def extend_node_order(self, old_list: list, new_list: list) ->list:
+        arcs = old_list
+        for new_arc in new_list:
+            check = True
+            for old_arc in old_list:
+                if old_arc[0] == new_arc[0] and old_arc[1] == new_arc[1]:
+                    check = False
+                    break
+            if check:
+                arcs.append(new_arc)
+        return arcs
+    
+    def prim_tree(self,vex: str) -> BinaryTreeNode:
+        head_node = BinaryTreeNode(vex)
+        current_node = head_node
+        node_order = [BinaryTreeNode() for _ in self.vexes]
+        arc_list = []
+        for run_time in range(len(self.vexes)):
+            node_order[self.locate_vex(current_node.data)] = current_node
+            arc_list = self.extend_node_order(arc_list,self.find_all_arcs(current_node.data))
+        
+            while True:
+                minimum_arc = self.arc_minimum(arc_list)
+                if minimum_arc in arc_list:
+                    arc_list.remove(minimum_arc)
+                else:
+                    break
+                if node_order[minimum_arc[1]].data is None or arc_list is None:
+                    break
+                    
+            if node_order[minimum_arc[1]].data is None:
+                next_node = BinaryTreeNode(self.vexes[minimum_arc[1]])
+                if current_node.left is None:
+                    current_node.left = next_node
+                else:
+                    current_node.right = next_node
+                current_node = next_node
+        return head_node
+            
+

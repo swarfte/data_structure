@@ -45,8 +45,10 @@ if __name__ == '__main__':
     print(matrix)
     print(matrix.dfs_traverse("v2"))
     print(matrix.bfs_traverse("v2"))
-
+    print(matrix.find_all_arcs("v1"))
+    print(matrix.vex_minimum("v3"))
     # print(matrix.first_AdjVex("v2"))
     # print(matrix.next_AdjVex("v2", "v1"))
     # matrix.delete_vex("v7")
     # print(matrix.dfs_traverse("v4"))
+    print(matrix.prim_tree("v1"))
